@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: casar-proxy
+    runtime: docker
+    plan: free
+
+    healthCheckPath: /
+
+    autoDeploy: true
+
+    envVars:
+      - key: CASAR_HOST
+        value: noivos.casar.com
+      - key: CASAR_PATH
+        value: /mariafernandaeronaldo

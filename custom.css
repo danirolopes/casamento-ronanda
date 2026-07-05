@@ -1,0 +1,63 @@
+/*
+ * Casar.com section background overrides.
+ * Edit the variables below to change colors without touching selectors.
+ */
+
+:root {
+  --bg-header: #f7f9fa;
+  --bg-section-home: #ffffff;
+  --bg-section-o-casal: #faf8f5;
+  --bg-section-casamento: #f5f0eb;
+  --bg-section-presentes: #f0ebe3;
+  --bg-section-rsvp: #faf8f5;
+  --bg-section-informacoes: #ffffff;
+  --bg-section-countdown: #f7f9fa;
+  --bg-footer: #f7f9fa;
+}
+
+/* Header / hero area */
+.sdn-topo .header {
+  background-color: var(--bg-header) !important;
+}
+
+/* One-page sections */
+.section-home,
+.section-home > .section-wrap {
+  background-color: var(--bg-section-home) !important;
+}
+
+.section-o-casal,
+.section-o-casal > .section-wrap {
+  background-color: var(--bg-section-o-casal) !important;
+}
+
+.section-casamento,
+.section-casamento > .section-wrap {
+  background-color: var(--bg-section-casamento) !important;
+}
+
+.section-presentes > .section-wrap {
+  background-color: var(--bg-section-presentes) !important;
+}
+
+.section-presentes .sdn-presentes::before {
+  background-color: var(--bg-section-presentes) !important;
+}
+
+.section-rsvp,
+.section-rsvp > .section-wrap {
+  background-color: var(--bg-section-rsvp) !important;
+}
+
+.section-informacoes-importantes,
+.section-informacoes-importantes > .section-wrap {
+  background-color: var(--bg-section-informacoes) !important;
+}
+
+.section-countdown {
+  background-color: var(--bg-section-countdown) !important;
+}
+
+.sdn-rodape {
+  background-color: var(--bg-footer) !important;
+}

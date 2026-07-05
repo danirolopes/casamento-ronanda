@@ -1,0 +1,18 @@
+FROM nginx:1.27-alpine
+
+RUN apk add --no-cache gettext
+
+COPY nginx.conf.template /etc/nginx/templates/default.conf.template
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+COPY custom.css /usr/share/nginx/html/custom.css
+COPY inject.js /usr/share/nginx/html/inject.js
+
+RUN chmod +x /docker-entrypoint.sh
+
+ENV CASAR_HOST=noivos.casar.com
+ENV CASAR_PATH=/mariafernandaeronaldo
+ENV PORT=10000
+
+EXPOSE 10000
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
