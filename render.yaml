@@ -13,3 +13,5 @@ services:
         value: noivos.casar.com
       - key: CASAR_PATH
         value: /mariafernandaeronaldo
+      - key: CASAR_PAINEL_HOST
+        value: painel.casar.com

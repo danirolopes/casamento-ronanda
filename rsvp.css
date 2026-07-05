@@ -1,0 +1,70 @@
+/*
+ * Typography overrides for the RSVP iframe (painel.casar.com Vue app).
+ */
+
+:root {
+  --font-title: "Dreamline", cursive;
+  --font-body: "Comfortaa", sans-serif;
+}
+
+body,
+button,
+input,
+optgroup,
+select,
+textarea,
+.label,
+.input,
+.textarea,
+.select select,
+.button,
+.field,
+.control,
+.help,
+.tag,
+.notification,
+.modal,
+.dropdown-item,
+.tabs a,
+.table,
+.c-rsvp-invite,
+.c-rsvp-invite__form,
+.c-rsvp-invite__actions,
+.c-guests,
+.c-guests__label,
+.c-guests__guest-description,
+.c-guests__guest-description-title,
+.c-list-guests,
+.c-list-guests-tab,
+.c-list-guests-tab__header-label,
+.c-list-guests-tab__no-result,
+.c-list-guests__title,
+.c-base-modal,
+.convite-label,
+p,
+span,
+a,
+li,
+label {
+  font-family: var(--font-body) !important;
+  font-weight: 300 !important;
+}
+
+.c-rsvp-invite__title,
+.title,
+.subtitle,
+h1,
+h2,
+h3,
+h4,
+.is-family-secondary {
+  font-family: var(--font-title) !important;
+  font-weight: 400 !important;
+}
+
+.button,
+.convite-label,
+.c-guests__guest-description-title,
+.label {
+  font-weight: 400 !important;
+}

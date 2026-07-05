@@ -17,6 +17,39 @@ server {
         add_header Cache-Control "public, max-age=86400";
     }
 
+    location /casar-painel/fonts/ {
+        alias /usr/share/nginx/html/fonts/;
+        add_header Cache-Control "public, max-age=86400";
+    }
+
+    location = /casar-painel/rsvp.css {
+        alias /usr/share/nginx/html/rsvp.css;
+        add_header Cache-Control "public, max-age=300";
+    }
+
+    location /casar-painel/ {
+        proxy_pass https://${CASAR_PAINEL_HOST}/;
+
+        proxy_ssl_server_name on;
+
+        proxy_set_header Host ${CASAR_PAINEL_HOST};
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+
+        proxy_set_header Accept-Encoding "";
+
+        proxy_cookie_domain .casar.com $host;
+
+        proxy_redirect off;
+
+        sub_filter_once off;
+        sub_filter_types text/html;
+
+        sub_filter 'src="/' 'src="/casar-painel/';
+        sub_filter 'href="/' 'href="/casar-painel/';
+        sub_filter '</head>' '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="fonts/dreamline.css"><link rel="stylesheet" href="rsvp.css"></head>';
+    }
+
     location / {
         proxy_pass https://${CASAR_HOST}${CASAR_PATH}/;
 
@@ -35,6 +68,8 @@ server {
         sub_filter_once off;
         sub_filter_types text/html;
 
+        sub_filter '//${CASAR_PAINEL_HOST}/' '/casar-painel/';
+        sub_filter 'https://${CASAR_PAINEL_HOST}/' '/casar-painel/';
         sub_filter '</head>' '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="/fonts/dreamline.css"><link rel="stylesheet" href="/custom.css"><script defer src="/inject.js"></script></head>';
     }
 }
