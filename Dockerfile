@@ -6,6 +6,7 @@ COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 COPY custom.css /usr/share/nginx/html/custom.css
 COPY inject.js /usr/share/nginx/html/inject.js
+COPY fonts/ /usr/share/nginx/html/fonts/
 
 RUN chmod +x /docker-entrypoint.sh
 

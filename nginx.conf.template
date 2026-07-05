@@ -12,6 +12,11 @@ server {
         add_header Cache-Control "public, max-age=300";
     }
 
+    location /fonts/ {
+        alias /usr/share/nginx/html/fonts/;
+        add_header Cache-Control "public, max-age=86400";
+    }
+
     location / {
         proxy_pass https://${CASAR_HOST}${CASAR_PATH}/;
 
@@ -30,6 +35,6 @@ server {
         sub_filter_once off;
         sub_filter_types text/html;
 
-        sub_filter '</head>' '<link rel="stylesheet" href="/custom.css"><script defer src="/inject.js"></script></head>';
+        sub_filter '</head>' '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="/fonts/dreamline.css"><link rel="stylesheet" href="/custom.css"><script defer src="/inject.js"></script></head>';
     }
 }

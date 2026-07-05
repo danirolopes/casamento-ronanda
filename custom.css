@@ -1,9 +1,12 @@
 /*
- * Casar.com section background overrides.
- * Edit the variables below to change colors without touching selectors.
+ * Casar.com visual overrides.
+ * Edit the variables below to change colors and fonts without touching selectors.
  */
 
 :root {
+  --font-title: "Dreamline", cursive;
+  --font-body: "Comfortaa", sans-serif;
+
   --bg-header: #f7f9fa;
   --bg-section-home: #F9F2E1;
   --bg-section-o-casal: #faf8f5;
@@ -13,6 +16,35 @@
   --bg-section-informacoes: #ffffff;
   --bg-section-countdown: #f7f9fa;
   --bg-footer: #f7f9fa;
+}
+
+/* Typography — body (replaces Affogato / Lato) */
+body.site-noivos,
+.sdn-wrapper,
+.sdn-topo .sdn-menu a,
+.sdn-intro-pagina,
+.sdn-pagina-conteudo,
+.sdn-pagina-conteudo div.text,
+.sdn-rodape,
+.sdn-live-countdown-wrap .countdown-content .txt,
+.sdn-rsvp form,
+.sdn-recados form,
+.navbar-nav.sections a,
+.ident,
+.valor-presente,
+.card-descricao,
+.form-control,
+.btn {
+  font-family: var(--font-body) !important;
+  font-weight: 300 !important;
+}
+
+/* Typography — titles (replaces Notera) */
+.sdn-topo .noivos,
+.sdn-titulo-pagina,
+.nome-noivos-menu {
+  font-family: var(--font-title) !important;
+  font-weight: 400 !important;
 }
 
 /* Header / hero area */
