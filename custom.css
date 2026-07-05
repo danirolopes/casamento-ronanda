@@ -47,6 +47,77 @@ body.site-noivos,
   font-weight: 400 !important;
 }
 
+/* Remove Casar theme icon under section titles */
+.sdn-titulo-pagina::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Countdown — keep items in a row on all screen sizes */
+.sdn-live-countdown-wrap.loaded > .countdown-content {
+  display: flex !important;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.sdn-live-countdown-wrap.loaded > .countdown-content > .item {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 1 auto;
+  margin: 0.75rem 0.25rem !important;
+}
+
+@media (max-width: 519px) {
+  .sdn-live-countdown-wrap.loaded > .countdown-content {
+    gap: 0.25rem;
+  }
+
+  .sdn-live-countdown-wrap.loaded > .countdown-content > .item {
+    margin: 0.5rem 0.125rem !important;
+  }
+
+  .sdn-live-countdown-wrap.loaded > .countdown-content > .item > .number {
+    width: 4rem !important;
+    height: 4rem !important;
+    font-size: 1.125rem !important;
+    padding-top: 1rem !important;
+  }
+
+  .sdn-live-countdown-wrap.loaded > .countdown-content > .item > .number::after {
+    width: 2.875rem !important;
+    height: 2.875rem !important;
+    left: 0.4375rem !important;
+    top: 0.4375rem !important;
+  }
+
+  .sdn-live-countdown-wrap.loaded > .countdown-content > .item > .txt {
+    font-size: 0.6875rem !important;
+  }
+}
+
+@media (max-width: 359px) {
+  .sdn-live-countdown-wrap.loaded > .countdown-content > .item > .number {
+    width: 3.5rem !important;
+    height: 3.5rem !important;
+    font-size: 1rem !important;
+    padding-top: 0.875rem !important;
+  }
+
+  .sdn-live-countdown-wrap.loaded > .countdown-content > .item > .number::after {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    left: 0.375rem !important;
+    top: 0.375rem !important;
+  }
+
+  .sdn-live-countdown-wrap.loaded > .countdown-content > .item > .txt {
+    font-size: 0.625rem !important;
+  }
+}
+
 /* Header / hero area */
 .sdn-topo .header {
   background-color: var(--bg-header) !important;
