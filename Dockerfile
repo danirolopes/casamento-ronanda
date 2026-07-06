@@ -16,7 +16,7 @@ RUN chmod +x /docker-entrypoint.sh
 ENV CASAR_HOST=noivos.casar.com
 ENV CASAR_PATH=/mariafernandaeronaldo
 ENV CASAR_PAINEL_HOST=painel.casar.com
-ENV SITE_URL=https://casamento-ronanda.onrender.com
+ENV SITE_URL=https://mariafernandaeronaldo.com.br
 ENV PORT=10000
 
 EXPOSE 10000

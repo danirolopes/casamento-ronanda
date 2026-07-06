@@ -4,7 +4,7 @@ set -eu
 : "${CASAR_HOST:=noivos.casar.com}"
 : "${CASAR_PATH:=/mariafernandaeronaldo}"
 : "${CASAR_PAINEL_HOST:=painel.casar.com}"
-: "${SITE_URL:=https://casamento-ronanda.onrender.com}"
+: "${SITE_URL:=https://mariafernandaeronaldo.com.br}"
 : "${PORT:=10000}"
 
 envsubst '${CASAR_HOST} ${CASAR_PATH} ${CASAR_PAINEL_HOST} ${SITE_URL} ${PORT}' \
