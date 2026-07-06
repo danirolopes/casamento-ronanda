@@ -27,6 +27,54 @@ server {
         add_header Cache-Control "public, max-age=300";
     }
 
+    location /casar-noivos/ {
+        proxy_pass https://noivos.casar.com/;
+
+        proxy_ssl_server_name on;
+
+        proxy_set_header Host noivos.casar.com;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+
+        proxy_set_header Accept-Encoding "";
+
+        proxy_cookie_domain .casar.com $host;
+
+        proxy_redirect off;
+    }
+
+    location /casar-internal-api/ {
+        proxy_pass https://internal-api.casar.com/;
+
+        proxy_ssl_server_name on;
+
+        proxy_set_header Host internal-api.casar.com;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+
+        proxy_set_header Accept-Encoding "";
+
+        proxy_cookie_domain .casar.com $host;
+
+        proxy_redirect off;
+    }
+
+    location /casar-api/ {
+        proxy_pass https://api.casar.com/;
+
+        proxy_ssl_server_name on;
+
+        proxy_set_header Host api.casar.com;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+
+        proxy_set_header Accept-Encoding "";
+
+        proxy_cookie_domain .casar.com $host;
+
+        proxy_redirect off;
+    }
+
     location /casar-painel/ {
         proxy_pass https://${CASAR_PAINEL_HOST}/;
 
@@ -43,10 +91,13 @@ server {
         proxy_redirect off;
 
         sub_filter_once off;
-        sub_filter_types text/html;
+        sub_filter_types text/html application/javascript;
 
         sub_filter 'src="/' 'src="/casar-painel/';
         sub_filter 'href="/' 'href="/casar-painel/';
+        sub_filter '"https://internal-api.casar.com".replace("internal-","")' '"/casar-api"';
+        sub_filter 'https://internal-api.casar.com' '/casar-internal-api';
+        sub_filter 'https://noivos.casar.com' '/casar-noivos';
         sub_filter '</head>' '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="fonts/dreamline.css"><link rel="stylesheet" href="rsvp.css"></head>';
     }
 
