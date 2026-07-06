@@ -115,6 +115,12 @@ h4,
   color: #404951;
 }
 
+.rsvp-separator {
+  border: 0;
+  border-top: 1px solid #b4c5d680;
+  margin: 1.5rem 0;
+}
+
 .rsvp-radio-group {
   display: flex;
   flex-direction: row;

@@ -8,13 +8,13 @@
   --font-body: "Comfortaa", sans-serif;
 
   --bg-header: #f7f9fa;
-  --bg-section-home: #F9F2E1;
-  --bg-section-o-casal: #faf8f5;
-  --bg-section-casamento: #f5f0eb;
-  --bg-section-presentes: #f0ebe3;
-  --bg-section-rsvp: #faf8f5;
-  --bg-section-informacoes: #ffffff;
-  --bg-section-countdown: #f7f9fa;
+  --bg-section-home: #E7E3D8;
+  --bg-section-o-casal: #E7E3D8;
+  --bg-section-casamento: #E7E3D8;
+  --bg-section-presentes: #E7E3D8;
+  --bg-section-rsvp: #E7E3D8;
+  --bg-section-informacoes: #E7E3D8;
+  --bg-section-countdown: #E7E3D8;
   --bg-footer: #f7f9fa;
 }
 
@@ -59,6 +59,10 @@ body.site-noivos,
   display: none !important;
 }
 
+.sdn-titulo-pagina {
+  padding-bottom: 35px !important;
+}
+
 /* Remove Casar.com promotional header and all wedding site navigation */
 #menu-principal,
 #mobile-menu-principal,
@@ -96,11 +100,11 @@ body.sdn-menu-fixed {
 }
 
 .sdn-topo .noivos {
-  margin-bottom: 0 !important;
+  margin-bottom: 0.25rem !important;
 }
 
 .sdn-topo .data {
-  display: none !important;
+  margin-top: 0 !important;
 }
 
 /* Countdown — keep items in a row on all screen sizes */

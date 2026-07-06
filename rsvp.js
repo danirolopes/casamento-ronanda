@@ -118,6 +118,19 @@
     }
   }
 
+  function addEmailSeparator(form) {
+    if (form.dataset.rsvpEmailSeparator) return;
+
+    var emailField = findFieldByLabel(form, "E-mail");
+    if (!emailField) return;
+
+    var separator = document.createElement("div");
+    separator.className = "rsvp-separator";
+    separator.setAttribute("role", "separator");
+    emailField.parentNode.insertBefore(separator, emailField);
+    form.dataset.rsvpEmailSeparator = "true";
+  }
+
   function enhanceGuestName(guest) {
     if (guest.dataset.rsvpGuestName) return;
 
@@ -183,10 +196,9 @@
     if (!form) return;
 
     simplifyEmailLabel(form);
+    addEmailSeparator(form);
 
     var guests = form.querySelectorAll(".guest");
-    if (!guests.length) return;
-
     guests.forEach(enhanceGuestBlock);
   }
 
