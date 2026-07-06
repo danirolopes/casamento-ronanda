@@ -118,6 +118,61 @@
     }
   }
 
+  function enhanceGuestName(guest) {
+    if (guest.dataset.rsvpGuestName) return;
+
+    var nameField = findFieldByLabel(guest, "Nome completo");
+    if (!nameField) return;
+
+    var input = nameField.querySelector("input.c-input");
+    var wrapper = nameField.querySelector(".c-base-input-outlined");
+    if (!wrapper) return;
+
+    wrapper.classList.add("rsvp-name-field");
+
+    if (wrapper.querySelector(".rsvp-guest-name")) {
+      guest.dataset.rsvpGuestName = "true";
+      return;
+    }
+
+    if (input && input.disabled && input.value.trim()) {
+      var nameEl = document.createElement("p");
+      nameEl.className = "rsvp-guest-name";
+      nameEl.textContent = input.value.trim();
+      input.classList.add("rsvp-select-sr-only");
+      wrapper.insertBefore(nameEl, input);
+    }
+
+    guest.dataset.rsvpGuestName = "true";
+  }
+
+  function enhanceGuestBlock(guest) {
+    if (guest.dataset.rsvpGuestEnhanced) return;
+
+    enhanceGuestName(guest);
+
+    var ageField = findFieldByLabel(guest, "Grupo de idade");
+    var ageSelect = ageField
+      ? ageField.querySelector("select.c-select")
+      : findSelectByOptions(guest, ["adult", "child"]);
+
+    if (ageSelect) {
+      setSelectValue(ageSelect, "adult");
+      hideField(ageSelect.closest(".field"));
+    }
+
+    var statusField = findFieldByLabel(guest, "Status de confirmação");
+    var statusSelect = statusField
+      ? statusField.querySelector("select.c-select")
+      : findSelectByOptions(guest, ["yes", "no"]);
+
+    if (statusSelect && !statusSelect.dataset.rsvpRadios) {
+      replaceSelectWithRadios(statusSelect, "yes");
+    }
+
+    guest.dataset.rsvpGuestEnhanced = "true";
+  }
+
   function enhanceConfirmationForm() {
     var confirmation = document.querySelector(".c-invite-confirmation");
     if (!confirmation) return;
@@ -129,33 +184,10 @@
 
     simplifyEmailLabel(form);
 
-    if (form.dataset.rsvpEnhanced) return;
-
     var guests = form.querySelectorAll(".guest");
     if (!guests.length) return;
 
-    guests.forEach(function (guest) {
-      var ageField = findFieldByLabel(guest, "Grupo de idade");
-      var ageSelect = ageField
-        ? ageField.querySelector("select.c-select")
-        : findSelectByOptions(guest, ["adult", "child"]);
-
-      if (ageSelect) {
-        setSelectValue(ageSelect, "adult");
-        hideField(ageSelect.closest(".field"));
-      }
-
-      var statusField = findFieldByLabel(guest, "Status de confirmação");
-      var statusSelect = statusField
-        ? statusField.querySelector("select.c-select")
-        : findSelectByOptions(guest, ["yes", "no"]);
-
-      if (statusSelect && !statusSelect.dataset.rsvpRadios) {
-        replaceSelectWithRadios(statusSelect, "yes");
-      }
-    });
-
-    form.dataset.rsvpEnhanced = "true";
+    guests.forEach(enhanceGuestBlock);
   }
 
   function run() {

@@ -4,4 +4,5 @@
  */
 (function () {
   document.documentElement.dataset.customProxy = "true";
+  document.title = "Maria Fernanda e Ronaldo";
 })();

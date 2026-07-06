@@ -130,6 +130,7 @@ server {
 
         sub_filter '//${CASAR_PAINEL_HOST}/' '/casar-painel/';
         sub_filter 'https://${CASAR_PAINEL_HOST}/' '/casar-painel/';
+        sub_filter '<title>Maria Fernanda e Ronaldo - Site do Casal | Casar.com</title>' '<title>Maria Fernanda e Ronaldo</title>';
         sub_filter '</head>' '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="/fonts/dreamline.css"><link rel="stylesheet" href="/custom.css"><script defer src="/inject.js"></script></head>';
     }
 }

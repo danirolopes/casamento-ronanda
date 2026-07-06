@@ -47,9 +47,59 @@ body.site-noivos,
   font-weight: 400 !important;
 }
 
+.sdn-topo .noivos,
+.nome-noivos-menu {
+  font-size: 22px !important;
+  line-height: 34px !important;
+}
+
 /* Remove Casar theme icon under section titles */
 .sdn-titulo-pagina::after {
   content: none !important;
+  display: none !important;
+}
+
+/* Remove Casar.com promotional header and all wedding site navigation */
+#menu-principal,
+#mobile-menu-principal,
+#sdn-menu-principal,
+.sdn-topo .sdn-menu,
+.sdn-topo .col2 {
+  display: none !important;
+}
+
+body.site-noivos,
+body.menu-collapsible,
+body.menu-fixed,
+body.menu-fixed.menu-collapsible,
+body.menu-fixed.menu-collapsible.menu-collapse-closed,
+body.sdn-menu-fixed {
+  padding-top: 0 !important;
+}
+
+/* Title-only header */
+.sdn-topo .header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  overflow: visible !important;
+  padding: 1.25rem 1rem !important;
+}
+
+.sdn-topo .header > .col1 {
+  float: none !important;
+  display: block !important;
+  width: 100% !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.sdn-topo .noivos {
+  margin-bottom: 0 !important;
+}
+
+.sdn-topo .data {
   display: none !important;
 }
 
