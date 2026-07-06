@@ -4,5 +4,5 @@
  */
 (function () {
   document.documentElement.dataset.customProxy = "true";
-  document.title = "Maria Fernanda e Ronaldo";
+  document.title = "Casamento Maria Fernanda e Ronaldo";
 })();

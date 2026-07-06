@@ -4,9 +4,10 @@ set -eu
 : "${CASAR_HOST:=noivos.casar.com}"
 : "${CASAR_PATH:=/mariafernandaeronaldo}"
 : "${CASAR_PAINEL_HOST:=painel.casar.com}"
+: "${SITE_URL:=https://casamento-ronanda.onrender.com}"
 : "${PORT:=10000}"
 
-envsubst '${CASAR_HOST} ${CASAR_PATH} ${CASAR_PAINEL_HOST} ${PORT}' \
+envsubst '${CASAR_HOST} ${CASAR_PATH} ${CASAR_PAINEL_HOST} ${SITE_URL} ${PORT}' \
   < /etc/nginx/templates/default.conf.template \
   > /etc/nginx/conf.d/default.conf
 

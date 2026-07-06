@@ -15,3 +15,5 @@ services:
         value: /mariafernandaeronaldo
       - key: CASAR_PAINEL_HOST
         value: painel.casar.com
+      - key: SITE_URL
+        value: https://casamento-ronanda.onrender.com
