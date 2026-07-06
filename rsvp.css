@@ -68,3 +68,68 @@ h4,
 .label {
   font-weight: 400 !important;
 }
+
+/* RSVP confirmation UX overrides (rsvp.js) */
+
+.rsvp-field-hidden {
+  display: none !important;
+}
+
+.rsvp-select-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.rsvp-status-field > .c-label {
+  margin-bottom: 0.75rem;
+}
+
+.rsvp-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.rsvp-radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid #b4c5d680;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #5d758d;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.rsvp-radio-option:hover {
+  box-shadow: 0 0 3px 0 #b4c5d6;
+}
+
+.rsvp-radio-option input[type="radio"] {
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0;
+  accent-color: #3dafb0;
+  cursor: pointer;
+}
+
+.rsvp-radio-label {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.rsvp-radio-option:has(input:checked) {
+  border-color: #3dafb0;
+  background-color: #f0fafafa;
+  box-shadow: 0 0 0 1px #3dafb040;
+}

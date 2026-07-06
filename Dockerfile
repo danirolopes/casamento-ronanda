@@ -6,6 +6,7 @@ COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 COPY custom.css /usr/share/nginx/html/custom.css
 COPY rsvp.css /usr/share/nginx/html/rsvp.css
+COPY rsvp.js /usr/share/nginx/html/rsvp.js
 COPY inject.js /usr/share/nginx/html/inject.js
 COPY fonts/ /usr/share/nginx/html/fonts/
 
