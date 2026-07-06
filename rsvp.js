@@ -95,6 +95,29 @@
     setSelectValue(select, defaultValue);
   }
 
+  function simplifyEmailLabel(form) {
+    if (form.dataset.rsvpEmailLabel) return;
+
+    var labels = form.querySelectorAll(".c-label, label");
+    for (var i = 0; i < labels.length; i++) {
+      var label = labels[i];
+      if (label.textContent.indexOf("E-mail") === -1) continue;
+
+      var br = label.querySelector("br");
+      if (br) {
+        var node = br;
+        while (node) {
+          var next = node.nextSibling;
+          label.removeChild(node);
+          node = next;
+        }
+      }
+
+      form.dataset.rsvpEmailLabel = "true";
+      break;
+    }
+  }
+
   function enhanceConfirmationForm() {
     var confirmation = document.querySelector(".c-invite-confirmation");
     if (!confirmation) return;
@@ -102,7 +125,11 @@
     if (confirmation.querySelector(".description.final")) return;
 
     var form = confirmation.querySelector("form");
-    if (!form || form.dataset.rsvpEnhanced) return;
+    if (!form) return;
+
+    simplifyEmailLabel(form);
+
+    if (form.dataset.rsvpEnhanced) return;
 
     var guests = form.querySelectorAll(".guest");
     if (!guests.length) return;

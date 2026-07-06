@@ -71,6 +71,12 @@ h4,
 
 /* RSVP confirmation UX overrides (rsvp.js) */
 
+.c-invite-confirmation .description:not(.final),
+.c-invite-confirmation .count-tag,
+.c-invite-confirmation .field.add-guest:has(.error-label) {
+  display: none !important;
+}
+
 .rsvp-field-hidden {
   display: none !important;
 }
