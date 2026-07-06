@@ -14,8 +14,15 @@
   --bg-section-presentes: #E7E3D8;
   --bg-section-rsvp: #E7E3D8;
   --bg-section-informacoes: #E7E3D8;
-  --bg-section-countdown: #E7E3D8;
+  --bg-section-countdown: #A51217;
   --bg-footer: #f7f9fa;
+  --bg-page: #E7E3D8;
+}
+
+html,
+body.site-noivos,
+.sdn-wrapper {
+  background-color: var(--bg-page) !important;
 }
 
 /* Typography — body (replaces Affogato / Lato) */
@@ -45,12 +52,17 @@ body.site-noivos,
 .nome-noivos-menu {
   font-family: var(--font-title) !important;
   font-weight: 400 !important;
+  font-size: 18px !important;
+  line-height: 30px !important;
 }
 
-.sdn-topo .noivos,
-.nome-noivos-menu {
-  font-size: 22px !important;
-  line-height: 34px !important;
+@media (min-width: 768px) {
+  .sdn-topo .noivos,
+  .sdn-titulo-pagina,
+  .nome-noivos-menu {
+    font-size: 30px !important;
+    line-height: 45px !important;
+  }
 }
 
 /* Remove Casar theme icon under section titles */
@@ -88,7 +100,7 @@ body.sdn-menu-fixed {
   justify-content: center !important;
   width: 100% !important;
   overflow: visible !important;
-  padding: 1.25rem 1rem !important;
+  padding: 10px 1rem 0 !important;
 }
 
 .sdn-topo .header > .col1 {
