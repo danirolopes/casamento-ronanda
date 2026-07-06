@@ -5,6 +5,10 @@
 :root {
   --font-title: "Dreamline", cursive;
   --font-body: "Comfortaa", sans-serif;
+  --rsvp-accent: #A51217;
+  --rsvp-accent-hover: #8f1015;
+  --rsvp-accent-active: #7a0e12;
+  --rsvp-control-radius: 8px;
 }
 
 body,
@@ -138,7 +142,7 @@ h4,
   min-width: 8rem;
   padding: 0.875rem 1rem;
   border: 1px solid #b4c5d680;
-  border-radius: 8px;
+  border-radius: var(--rsvp-control-radius);
   cursor: pointer;
   color: #5d758d;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
@@ -166,4 +170,37 @@ h4,
   border-color: #3dafb0;
   background-color: #f0fafafa;
   box-shadow: 0 0 0 1px #3dafb040;
+}
+
+.button.is-primary {
+  background-color: var(--rsvp-accent) !important;
+  border-color: transparent !important;
+  border-radius: var(--rsvp-control-radius) !important;
+  color: #ffffff !important;
+}
+
+.button.is-primary:hover,
+.button.is-primary.is-hovered {
+  background-color: var(--rsvp-accent-hover) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+}
+
+.button.is-primary:active,
+.button.is-primary.is-active {
+  background-color: var(--rsvp-accent-active) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+}
+
+.button.is-primary:focus:not(:active),
+.button.is-primary.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(165, 18, 23, 0.25) !important;
+}
+
+.button.is-primary[disabled],
+fieldset[disabled] .button.is-primary {
+  background-color: var(--rsvp-accent) !important;
+  border-color: transparent !important;
+  opacity: 0.5;
 }

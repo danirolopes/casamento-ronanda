@@ -17,6 +17,9 @@
   --bg-section-countdown: #A51217;
   --bg-footer: #f7f9fa;
   --bg-page: #E7E3D8;
+
+  --color-accent: #A51217;
+  --color-accent-muted: color-mix(in srgb, var(--color-accent) 55%, #7a7772 45%);
 }
 
 html,
@@ -46,9 +49,8 @@ body.site-noivos,
   font-weight: 300 !important;
 }
 
-/* Typography — titles (replaces Notera) */
+/* Typography — header title */
 .sdn-topo .noivos,
-body.site-noivos h2.sdn-titulo-pagina,
 .nome-noivos-menu {
   font-family: var(--font-title) !important;
   font-weight: 400 !important;
@@ -56,12 +58,24 @@ body.site-noivos h2.sdn-titulo-pagina,
   line-height: 30px !important;
 }
 
+/* Typography — section titles in page body */
+body.site-noivos h2.sdn-titulo-pagina {
+  font-family: var(--font-title) !important;
+  font-weight: 400 !important;
+  font-size: 22px !important;
+  line-height: 34px !important;
+}
+
 @media (min-width: 768px) {
   .sdn-topo .noivos,
-  body.site-noivos h2.sdn-titulo-pagina,
   .nome-noivos-menu {
     font-size: 30px !important;
     line-height: 45px !important;
+  }
+
+  body.site-noivos h2.sdn-titulo-pagina {
+    font-size: 36px !important;
+    line-height: 54px !important;
   }
 }
 
@@ -232,6 +246,15 @@ body.sdn-menu-fixed {
 
 .section-presentes .sdn-presentes::before {
   background-color: var(--bg-section-presentes) !important;
+}
+
+.section-presentes h2.sdn-titulo-pagina {
+  font-family: var(--font-body) !important;
+  color: var(--color-accent) !important;
+}
+
+.section-presentes .sdn-intro-pagina {
+  color: var(--color-accent-muted) !important;
 }
 
 .sdn-presentes .presentes {
