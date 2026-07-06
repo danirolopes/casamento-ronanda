@@ -238,6 +238,10 @@ body.sdn-menu-fixed {
   margin-top: 16px !important;
 }
 
+.sdn-presentes .presentes .presente.center-block {
+  margin-bottom: 10px !important;
+}
+
 @media (max-width: 619px) {
   .sdn-presentes .presentes > .fluid-grid > li {
     min-width: 0 !important;
@@ -248,7 +252,8 @@ body.sdn-menu-fixed {
 .sdn-presentes .presentes .btn,
 .sdn-presentes .presentes button,
 .sdn-presentes .presentes .btn-presente-ver-mais {
-  padding: 0 !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
 }
 
 .section-rsvp,
