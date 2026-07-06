@@ -272,6 +272,12 @@ body.sdn-menu-fixed {
   }
 }
 
+@media (min-width: 360px) and (max-width: 768px) {
+  .sdn-presentes .presentes > .fluid-grid > li {
+    min-height: 0 !important;
+  }
+}
+
 .sdn-presentes .presentes .btn,
 .sdn-presentes .presentes button,
 .sdn-presentes .presentes .btn-presente-ver-mais {
@@ -282,6 +288,10 @@ body.sdn-menu-fixed {
 .section-rsvp,
 .section-rsvp > .section-wrap {
   background-color: var(--bg-section-rsvp) !important;
+}
+
+.section-rsvp h2.sdn-titulo-pagina {
+  color: var(--color-accent) !important;
 }
 
 .section-informacoes-importantes,

@@ -56,7 +56,7 @@
     var group = document.createElement("div");
     group.className = "rsvp-radio-group";
     group.setAttribute("role", "radiogroup");
-    group.setAttribute("aria-label", "Status de confirmação");
+    group.setAttribute("aria-label", "Confirmação de presença");
 
     Array.prototype.forEach.call(select.options, function (option) {
       if (!option.value) return;
