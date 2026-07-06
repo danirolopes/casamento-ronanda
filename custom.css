@@ -201,6 +201,17 @@ body.sdn-menu-fixed {
   background-color: var(--bg-section-presentes) !important;
 }
 
+.sdn-presentes .presentes {
+  margin-top: 16px !important;
+}
+
+@media (max-width: 619px) {
+  .sdn-presentes .presentes > .fluid-grid > li {
+    min-width: 0 !important;
+    width: 49% !important;
+  }
+}
+
 .section-rsvp,
 .section-rsvp > .section-wrap {
   background-color: var(--bg-section-rsvp) !important;
