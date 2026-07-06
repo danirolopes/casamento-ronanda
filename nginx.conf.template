@@ -101,6 +101,7 @@ server {
         sub_filter '"https://internal-api.casar.com".replace("internal-","")' '"/casar-api"';
         sub_filter 'https://internal-api.casar.com' '/casar-internal-api';
         sub_filter 'https://noivos.casar.com' '/casar-noivos';
+        sub_filter 'this.apiUrl=o+"/v1/rsvp"' 'this.apiUrl=window.location.origin+o+"/v1/rsvp"';
         sub_filter '</head>' '<base href="/casar-painel/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="fonts/dreamline.css"><link rel="stylesheet" href="rsvp.css"></head>';
     }
 
