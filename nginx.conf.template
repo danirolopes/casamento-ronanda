@@ -97,10 +97,11 @@ server {
         sub_filter 'href="/css/' 'href="/casar-painel/css/';
         sub_filter 'href="/favicons/' 'href="/casar-painel/favicons/';
         sub_filter 'href="/site.webmanifest"' 'href="/casar-painel/site.webmanifest"';
+        sub_filter 'mode:"history",base:"/",routes:' 'mode:"history",base:"/casar-painel/",routes:';
         sub_filter '"https://internal-api.casar.com".replace("internal-","")' '"/casar-api"';
         sub_filter 'https://internal-api.casar.com' '/casar-internal-api';
         sub_filter 'https://noivos.casar.com' '/casar-noivos';
-        sub_filter '</head>' '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="fonts/dreamline.css"><link rel="stylesheet" href="rsvp.css"></head>';
+        sub_filter '</head>' '<base href="/casar-painel/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="fonts/dreamline.css"><link rel="stylesheet" href="rsvp.css"></head>';
     }
 
     location / {
