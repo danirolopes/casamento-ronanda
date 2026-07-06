@@ -93,8 +93,10 @@ server {
         sub_filter_once off;
         sub_filter_types text/html application/javascript;
 
-        sub_filter 'src="/' 'src="/casar-painel/';
-        sub_filter 'href="/' 'href="/casar-painel/';
+        sub_filter 'src="/js/' 'src="/casar-painel/js/';
+        sub_filter 'href="/css/' 'href="/casar-painel/css/';
+        sub_filter 'href="/favicons/' 'href="/casar-painel/favicons/';
+        sub_filter 'href="/site.webmanifest"' 'href="/casar-painel/site.webmanifest"';
         sub_filter '"https://internal-api.casar.com".replace("internal-","")' '"/casar-api"';
         sub_filter 'https://internal-api.casar.com' '/casar-internal-api';
         sub_filter 'https://noivos.casar.com' '/casar-noivos';
