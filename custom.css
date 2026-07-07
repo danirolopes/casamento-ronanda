@@ -486,6 +486,39 @@ body.sdn-menu-fixed {
   display: none !important;
 }
 
+@media (min-width: 992px) {
+  .sdn-presentes .pre-cart2 {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sdn-presentes .pre-cart2 > .row {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .sdn-presentes .pre-cart2 > .row > [class*="col-md-"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .sdn-presentes .pre-cart2 > .row > .col-md-5 {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(93, 117, 141, 0.2);
+  }
+
+  .sdn-presentes .pre-cart2 .resumo-compra-subtitle {
+    margin-bottom: 1rem;
+  }
+}
+
 .section-rsvp,
 .section-rsvp > .section-wrap {
   background-color: var(--bg-section-rsvp) !important;
