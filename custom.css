@@ -7,7 +7,7 @@
   --font-title: "Dreamline", cursive;
   --font-body: "Comfortaa", sans-serif;
 
-  --bg-header: #f7f9fa;
+  --bg-header: #E7E3D8;
   --bg-section-home: #E7E3D8;
   --bg-section-o-casal: #E7E3D8;
   --bg-section-casamento: #E7E3D8;
@@ -60,6 +60,7 @@ body.site-noivos,
   font-weight: 400 !important;
   font-size: 18px !important;
   line-height: 30px !important;
+  color: var(--color-accent) !important;
 }
 
 /* Typography — section titles in page body */
@@ -98,8 +99,41 @@ body.site-noivos h2.sdn-titulo-pagina {
 #mobile-menu-principal,
 #sdn-menu-principal,
 .sdn-topo .sdn-menu,
-.sdn-topo .col2 {
+.sdn-topo .col2,
+.sdn-go-to-top {
   display: none !important;
+}
+
+.rsvp-cta-fixed {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 1000;
+  padding: 0.875rem 1.25rem;
+  border-radius: 8px;
+  background-color: var(--color-accent) !important;
+  color: #ffffff !important;
+  font-family: var(--font-body) !important;
+  font-weight: 400 !important;
+  font-size: 1rem !important;
+  line-height: 1.25 !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 12px rgba(165, 18, 23, 0.35);
+}
+
+.rsvp-cta-fixed:hover,
+.rsvp-cta-fixed:focus {
+  background-color: #8f1015 !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+@media (max-width: 767px) {
+  .rsvp-cta-fixed {
+    left: 0.75rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    max-width: calc(100% - 1.5rem);
+  }
 }
 
 body.site-noivos,

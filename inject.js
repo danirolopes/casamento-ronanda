@@ -52,6 +52,14 @@
     );
   }
 
+  function loadRsvpIframe(iframe) {
+    if (!iframe || iframe.dataset.rsvpLoaded) return;
+    iframe.dataset.rsvpLoaded = "true";
+    if (iframe.dataset.rsvpSrc) {
+      iframe.src = iframe.dataset.rsvpSrc;
+    }
+  }
+
   function lazyLoadRsvpIframe() {
     var iframe = document.getElementById("rsvp-invites-iframe");
     if (!iframe || iframe.dataset.rsvpLazyInit) return;
@@ -65,27 +73,21 @@
     iframe.removeAttribute("src");
     iframe.setAttribute("loading", "lazy");
 
-    function loadIframe() {
-      if (iframe.dataset.rsvpLoaded) return;
-      iframe.dataset.rsvpLoaded = "true";
-      iframe.src = iframe.dataset.rsvpSrc;
-    }
-
     if (location.hash === "#rsvp") {
-      loadIframe();
+      loadRsvpIframe(iframe);
       return;
     }
 
     var target = iframe.closest(".section-rsvp") || iframe;
     if (!("IntersectionObserver" in window)) {
-      loadIframe();
+      loadRsvpIframe(iframe);
       return;
     }
 
     var observer = new IntersectionObserver(
       function (entries) {
         if (entries[0].isIntersecting) {
-          loadIframe();
+          loadRsvpIframe(iframe);
           observer.disconnect();
         }
       },
@@ -94,8 +96,32 @@
     observer.observe(target);
   }
 
+  function addRsvpCtaButton() {
+    if (document.getElementById("rsvp-cta-fixed")) return;
+
+    var button = document.createElement("a");
+    button.id = "rsvp-cta-fixed";
+    button.className = "rsvp-cta-fixed";
+    button.href = "#rsvp";
+    button.textContent = "Confirme sua presença!";
+    button.addEventListener("click", function (event) {
+      var iframe = document.getElementById("rsvp-invites-iframe");
+      loadRsvpIframe(iframe);
+
+      var target = document.getElementById("rsvp") || document.querySelector(".section-rsvp");
+      if (!target) return;
+
+      event.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.replaceState(null, "", "#rsvp");
+    });
+
+    document.body.appendChild(button);
+  }
+
   function onDomReady() {
     lazyLoadRsvpIframe();
+    addRsvpCtaButton();
   }
 
   holdLoaderUntilFonts();
