@@ -87,23 +87,56 @@ body.site-noivos h2.sdn-titulo-pagina {
   .sdn-topo .header {
     justify-content: space-between !important;
     align-items: center !important;
-    gap: 1.5rem;
+    gap: 1rem 1.5rem;
     padding: 12px 1.5rem 0 !important;
   }
 
   .sdn-topo .header > .col1 {
     width: auto !important;
-    flex: 1 1 auto !important;
+    flex: 0 1 30% !important;
+    min-width: 0 !important;
     text-align: left !important;
   }
 
   .sdn-topo .header > .col2 {
     display: block !important;
-    flex: 0 1 auto !important;
+    flex: 1 1 70% !important;
+    min-width: 0 !important;
+    max-width: none !important;
   }
 
   .site-nav-desktop {
     display: block !important;
+  }
+
+  .site-nav-desktop .site-nav-list {
+    flex-wrap: nowrap !important;
+    justify-content: flex-end;
+    gap: 0 1.75rem;
+  }
+
+  .site-nav-desktop .site-nav-link {
+    flex: 0 0 auto;
+    font-size: 1.3125rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .site-nav-desktop .site-nav-label {
+    white-space: nowrap !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .sdn-topo .header > .col1 {
+    flex: 0 1 28% !important;
+  }
+
+  .sdn-topo .header > .col2 {
+    flex: 1 1 72% !important;
+  }
+
+  .site-nav-desktop .site-nav-list {
+    gap: 0 2rem;
   }
 }
 
@@ -164,20 +197,25 @@ body.site-noivos h2.sdn-titulo-pagina {
 
 .site-nav-desktop .site-nav-list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.35rem 1.25rem;
+  gap: 0 1.75rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .site-nav-desktop .site-nav-link {
+  flex: 0 0 auto;
   flex-direction: row;
   gap: 0;
-  font-size: 1.125rem !important;
+  font-size: 1.3125rem !important;
   line-height: 1.35 !important;
+  white-space: nowrap;
+}
+
+.site-nav-desktop .site-nav-label {
   white-space: nowrap;
 }
 
@@ -215,12 +253,12 @@ body.site-noivos h2.sdn-titulo-pagina {
 }
 
 .site-nav-mobile .site-nav-icon svg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.625rem;
+  height: 1.625rem;
 }
 
 .site-nav-mobile .site-nav-label {
-  font-size: 0.875rem !important;
+  font-size: 1rem !important;
   line-height: 1.2 !important;
   font-weight: 400 !important;
   text-align: center;
@@ -290,7 +328,7 @@ body.sdn-menu-fixed {
   }
 
   body.site-noivos {
-    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom)) !important;
+    padding-bottom: calc(5.75rem + env(safe-area-inset-bottom)) !important;
   }
 }
 
@@ -483,6 +521,11 @@ body.sdn-menu-fixed {
 }
 
 body.site-noivos .section-countdown h2.sdn-titulo-pagina {
+  color: #ffffff !important;
+}
+
+.section-countdown .sdn-live-countdown-wrap.loaded > .countdown-content > .item > .number,
+.section-countdown .sdn-live-countdown-wrap.loaded > .countdown-content > .item > .txt {
   color: #ffffff !important;
 }
 
