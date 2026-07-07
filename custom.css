@@ -477,6 +477,15 @@ body.sdn-menu-fixed {
   display: none !important;
 }
 
+.postcards-wrap,
+.postcards-loading,
+.postcards-slider-wrap,
+.pre-cart__remove-card,
+.sdn-presentes-postcard-toggle-modal,
+.sdn-presentes-cartao {
+  display: none !important;
+}
+
 .section-rsvp,
 .section-rsvp > .section-wrap {
   background-color: var(--bg-section-rsvp) !important;

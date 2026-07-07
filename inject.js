@@ -337,10 +337,131 @@
     document.body.appendChild(mobileNav);
   }
 
+  function getGiftsControllerScope() {
+    var root = document.querySelector(".sdn-presentes");
+    if (!root || !window.angular) return null;
+
+    var scope = angular.element(root).scope();
+    return scope && scope.vm ? scope : null;
+  }
+
+  function clearGiftPostcardState(vm) {
+    if (!vm || !vm.cart) return false;
+
+    if (!vm.cart.postcard) {
+      vm.cart.postcard = {};
+    }
+
+    var postcard = vm.cart.postcard;
+    var changed = false;
+
+    function set(key, value) {
+      if (postcard[key] !== value) {
+        postcard[key] = value;
+        changed = true;
+      }
+    }
+
+    set("enabled", false);
+    set("send", false);
+    set("id", undefined);
+    set("value", undefined);
+    set("value_with_discount", undefined);
+    set("card_msg_showed", true);
+
+    if (vm.extra && vm.extra.loadPostcardSlider) {
+      vm.extra.loadPostcardSlider = false;
+      changed = true;
+    }
+
+    if (vm.errors && vm.errors.presente_comprar_postcard) {
+      vm.errors.presente_comprar_postcard = false;
+      changed = true;
+    }
+
+    if (changed && typeof vm.getTotal === "function") {
+      vm.getTotal();
+    }
+
+    return changed;
+  }
+
+  function patchGiftsController(vm, scope) {
+    if (!vm || vm.__giftPostcardPatch) return;
+
+    if (typeof vm.goToStep === "function") {
+      var goToStep = vm.goToStep;
+      vm.goToStep = function (name) {
+        var result = goToStep.apply(this, arguments);
+        if (name === "pre-cart2") {
+          scope.$evalAsync(function () {
+            clearGiftPostcardState(vm);
+          });
+        }
+        return result;
+      };
+    }
+
+    if (typeof vm.buy === "function") {
+      var buy = vm.buy;
+      vm.buy = function () {
+        clearGiftPostcardState(vm);
+        return buy.apply(this, arguments);
+      };
+    }
+
+    if (typeof vm.selectPostCard === "function") {
+      vm.selectPostCard = function () {};
+    }
+
+    if (typeof vm.selectRandomPostCard === "function") {
+      vm.selectRandomPostCard = function () {};
+    }
+
+    if (typeof vm.togglePostcard === "function") {
+      vm.togglePostcard = function () {
+        clearGiftPostcardState(vm);
+      };
+    }
+
+    vm.__giftPostcardPatch = true;
+    clearGiftPostcardState(vm);
+    scope.$applyAsync();
+  }
+
+  function disableGiftPostcards() {
+    var scope = getGiftsControllerScope();
+    if (!scope) return false;
+
+    patchGiftsController(scope.vm, scope);
+    return true;
+  }
+
+  function watchGiftPostcards() {
+    if (disableGiftPostcards()) return;
+
+    var root = document.querySelector(".section-presentes") || document.body;
+    var observer = new MutationObserver(function () {
+      if (disableGiftPostcards()) {
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(root, { childList: true, subtree: true });
+
+    var attempts = 0;
+    var interval = setInterval(function () {
+      if (disableGiftPostcards() || ++attempts > 40) {
+        clearInterval(interval);
+      }
+    }, 500);
+  }
+
   function onDomReady() {
     fixCouplePhotoCarousel();
     lazyLoadRsvpIframe();
     addSiteNavigation();
+    watchGiftPostcards();
   }
 
   holdLoaderUntilFonts();
