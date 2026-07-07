@@ -222,6 +222,6 @@ server {
         sub_filter '<meta property="og:image:height" content="158"/>' '<meta property="og:image:height" content="630"/>';
         sub_filter '<meta property="og:url" content="https://noivos.casar.com/mariafernandaeronaldo">' '<meta property="og:url" content="${SITE_URL}/">';
         sub_filter '&quot;cartao_postal_ativo&quot;:&quot;1&quot;' '&quot;cartao_postal_ativo&quot;:&quot;0&quot;';
-        sub_filter '</head>' '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" href="/fonts/DREAMLINE.OTF" as="font" type="font/otf" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="/fonts/dreamline.css"><link rel="stylesheet" href="/custom.css"><script src="/inject.js"></script></head>';
+        sub_filter '</head>' '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" href="/fonts/DREAMLINE.OTF" as="font" type="font/otf" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="/fonts/dreamline.css"><link rel="stylesheet" href="/custom.css?v=1"><script src="/inject.js"></script></head>';
     }
 }
