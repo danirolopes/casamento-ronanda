@@ -7,6 +7,9 @@ set -eu
 : "${SITE_URL:=https://mariafernandaeronaldo.com.br}"
 : "${PORT:=10000}"
 
+SITE_SLUG="${CASAR_PATH#/}"
+export SITE_SLUG
+
 OG_IMAGE_PREFIX="https://noivos.casar.com/thumb/200x200x1/dados/sitenoivos/wed1525655/paginas/"
 OG_IMAGE_FILE=$(
   curl -fsSL "https://${CASAR_HOST}${CASAR_PATH}/" \
@@ -21,7 +24,7 @@ fi
 
 export OG_IMAGE_FILE
 
-envsubst '${CASAR_HOST} ${CASAR_PATH} ${CASAR_PAINEL_HOST} ${SITE_URL} ${PORT} ${OG_IMAGE_FILE}' \
+envsubst '${CASAR_HOST} ${CASAR_PATH} ${CASAR_PAINEL_HOST} ${SITE_URL} ${SITE_SLUG} ${PORT} ${OG_IMAGE_FILE}' \
   < /etc/nginx/templates/default.conf.template \
   > /etc/nginx/conf.d/default.conf
 
