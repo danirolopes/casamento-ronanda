@@ -92,17 +92,19 @@ body.site-noivos h2.sdn-titulo-pagina {
   }
 
   .sdn-topo .header > .col1 {
-    width: auto !important;
-    flex: 0 1 30% !important;
+    width: 50% !important;
+    flex: 1 1 50% !important;
     min-width: 0 !important;
+    max-width: 50% !important;
     text-align: left !important;
   }
 
   .sdn-topo .header > .col2 {
     display: block !important;
-    flex: 1 1 70% !important;
+    width: 50% !important;
+    flex: 1 1 50% !important;
     min-width: 0 !important;
-    max-width: none !important;
+    max-width: 50% !important;
   }
 
   .site-nav-desktop {
@@ -127,14 +129,6 @@ body.site-noivos h2.sdn-titulo-pagina {
 }
 
 @media (min-width: 992px) {
-  .sdn-topo .header > .col1 {
-    flex: 0 1 28% !important;
-  }
-
-  .sdn-topo .header > .col2 {
-    flex: 1 1 72% !important;
-  }
-
   .site-nav-desktop .site-nav-list {
     gap: 0 2rem;
   }
