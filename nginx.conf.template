@@ -217,7 +217,7 @@ server {
         sub_filter '<meta property="og:title" content="Maria Fernanda e Ronaldo - Site do Casal | Casar.com"/>' '<meta property="og:title" content="Casamento Maria Fernanda e Ronaldo"/>';
         sub_filter '<meta property="og:site_name" content="Casar.com"/>' '<meta property="og:site_name" content="Maria Fernanda e Ronaldo"/>';
         sub_filter '<meta property="og:description" content="Queridos amigos! Vejam nosso site que fizemos no Casar.com. Dêem uma olhada e podem deixar uma mensagem em nosso mural de recados!"/>' '<meta property="og:description" content="Casamento de Maria Fernanda e Ronaldo. Confirme sua presença e veja os detalhes do nosso grande dia."/>';
-        sub_filter '<meta property="og:image" content="https://noivos.casar.com/thumb/200x200x1/dados/sitenoivos/wed1525655/paginas/' '<meta property="og:image" content="${SITE_URL}/og-image.png"/><meta property="og:image:secure_url" content="${SITE_URL}/og-image.png"/><meta property="og:image:type" content="image/png"/>';
+        sub_filter '<meta property="og:image" content="https://noivos.casar.com/thumb/200x200x1/dados/sitenoivos/wed1525655/paginas/${OG_IMAGE_FILE}"/>' '<meta property="og:image" content="${SITE_URL}/og-image.png"/><meta property="og:image:secure_url" content="${SITE_URL}/og-image.png"/><meta property="og:image:type" content="image/png"/>';
         sub_filter '<meta property="og:image:width" content="158"/>' '<meta property="og:image:width" content="1200"/>';
         sub_filter '<meta property="og:image:height" content="158"/>' '<meta property="og:image:height" content="630"/>';
         sub_filter '<meta property="og:url" content="https://noivos.casar.com/mariafernandaeronaldo">' '<meta property="og:url" content="${SITE_URL}/">';
