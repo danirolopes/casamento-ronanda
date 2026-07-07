@@ -164,6 +164,52 @@
     }
   }
 
+  var SLIDER_LAZY_RADIUS = 99;
+  var preloadedSliderImages = {};
+
+  function preloadCoupleSliderImages() {
+    document.querySelectorAll('.slider-wrap img[data-u="image"]').forEach(function (img) {
+      var url = img.currentSrc || img.getAttribute("src");
+      if (!url || preloadedSliderImages[url]) return;
+
+      preloadedSliderImages[url] = true;
+      var loader = new Image();
+      loader.decoding = "async";
+      loader.src = url;
+    });
+  }
+
+  function patchCoupleSliderOptions() {
+    var getOptions = window.SDN_GET_SLIDER_OPTIONS;
+    if (typeof getOptions !== "function" || getOptions.__coupleSliderPatch) return;
+
+    window.SDN_GET_SLIDER_OPTIONS = function () {
+      var options = getOptions();
+      // Default lazy radius is 1 (current + 1 slide). Autoplay unloads distant
+      // slides and refetches them on each loop; manual clicks stay nearby.
+      options.$LazyLoading = SLIDER_LAZY_RADIUS;
+      return options;
+    };
+    window.SDN_GET_SLIDER_OPTIONS.__coupleSliderPatch = true;
+  }
+
+  function patchCoupleSliderInit() {
+    var startSlider = window.startSlider;
+    if (typeof startSlider !== "function" || startSlider.__coupleSliderPatch) return;
+
+    window.startSlider = function () {
+      preloadCoupleSliderImages();
+      return startSlider.apply(this, arguments);
+    };
+    window.startSlider.__coupleSliderPatch = true;
+  }
+
+  function fixCouplePhotoCarousel() {
+    patchCoupleSliderOptions();
+    patchCoupleSliderInit();
+    preloadCoupleSliderImages();
+  }
+
   function addRsvpCtaButton() {
     if (document.getElementById("rsvp-cta-fixed")) return;
 
@@ -195,6 +241,7 @@
   }
 
   function onDomReady() {
+    fixCouplePhotoCarousel();
     lazyLoadRsvpIframe();
     addRsvpCtaButton();
   }

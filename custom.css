@@ -286,6 +286,11 @@ body.sdn-menu-fixed {
   background-color: var(--bg-section-o-casal) !important;
 }
 
+/* JSSOR shows a loading spinner on autoplay when lazy slides are refetched */
+.sdn-pagina-conteudo div.slider-wrap.initiated > [data-u="loading"] {
+  display: none !important;
+}
+
 .section-casamento,
 .section-casamento > .section-wrap {
   background-color: var(--bg-section-casamento) !important;
