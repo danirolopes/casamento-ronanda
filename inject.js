@@ -210,40 +210,127 @@
     preloadCoupleSliderImages();
   }
 
-  function addRsvpCtaButton() {
-    if (document.getElementById("rsvp-cta-fixed")) return;
+  var SITE_NAV_ITEMS = [
+    {
+      id: "casamento",
+      href: "#casamento",
+      label: "O Casamento",
+      shortLabel: "Casamento",
+      icon:
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-4.35-9-7.5C1.5 11 2 7 5.5 5 8 3.5 10 4 12 6c2-2 4-2.5 6.5-1 3.5 2 4 6 2.5 8.5C18.5 16.65 12 21 12 21z"/></svg>',
+    },
+    {
+      id: "rsvp",
+      href: "#rsvp",
+      label: "Confirmar presença",
+      shortLabel: "Presença",
+      primeRsvp: true,
+      icon:
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>',
+    },
+    {
+      id: "presentes",
+      href: "#presentes",
+      label: "Presentes",
+      shortLabel: "Presentes",
+      icon:
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12v8H4v-8h16m0-2H4c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2-6h-4V2h-4v2H6c-1.1 0-2 .9-2 2v2h16V6c0-1.1-.9-2-2-2z"/></svg>',
+    },
+    {
+      id: "informacoes-importantes",
+      href: "#informacoes-importantes",
+      label: "Informações Importantes",
+      shortLabel: "Informações",
+      icon:
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>',
+    },
+  ];
 
-    var button = document.createElement("a");
-    button.id = "rsvp-cta-fixed";
-    button.className = "rsvp-cta-fixed";
-    button.href = "#rsvp";
-    button.textContent = "Confirme sua presença!";
+  function getNavTarget(item) {
+    return document.getElementById(item.id);
+  }
 
+  function bindNavLink(link, item) {
     function primeRsvp() {
+      if (!item.primeRsvp) return;
       prefetchRsvpAssets();
       warmRsvpIframe();
     }
 
-    button.addEventListener("mouseenter", primeRsvp, { once: true });
-    button.addEventListener("touchstart", primeRsvp, { once: true, passive: true });
-    button.addEventListener("click", function (event) {
+    link.addEventListener("mouseenter", primeRsvp, { once: true });
+    link.addEventListener("touchstart", primeRsvp, { once: true, passive: true });
+    link.addEventListener("click", function (event) {
       primeRsvp();
 
-      var target = document.getElementById("rsvp") || document.querySelector(".section-rsvp");
+      var target = getNavTarget(item);
       if (!target) return;
 
       event.preventDefault();
       target.scrollIntoView({ behavior: "smooth", block: "start" });
-      history.replaceState(null, "", "#rsvp");
+      history.replaceState(null, "", item.href);
+    });
+  }
+
+  function createNavLink(item, variant) {
+    var link = document.createElement("a");
+    link.className = "site-nav-link";
+    link.href = item.href;
+
+    var icon = document.createElement("span");
+    icon.className = "site-nav-icon";
+    icon.innerHTML = item.icon;
+
+    var label = document.createElement("span");
+    label.className = "site-nav-label";
+    label.textContent = variant === "mobile" ? item.shortLabel : item.label;
+
+    link.appendChild(icon);
+    link.appendChild(label);
+    bindNavLink(link, item);
+    return link;
+  }
+
+  function addSiteNavigation() {
+    if (document.getElementById("site-nav-desktop")) return;
+
+    var desktopNav = document.createElement("nav");
+    desktopNav.id = "site-nav-desktop";
+    desktopNav.className = "site-nav site-nav-desktop";
+    desktopNav.setAttribute("aria-label", "Navegação principal");
+
+    var desktopList = document.createElement("ul");
+    desktopList.className = "site-nav-list";
+
+    SITE_NAV_ITEMS.forEach(function (item) {
+      var listItem = document.createElement("li");
+      listItem.appendChild(createNavLink(item, "desktop"));
+      desktopList.appendChild(listItem);
     });
 
-    document.body.appendChild(button);
+    desktopNav.appendChild(desktopList);
+
+    var headerCol = document.querySelector(".sdn-topo .header > .col2");
+    if (headerCol) {
+      headerCol.innerHTML = "";
+      headerCol.appendChild(desktopNav);
+    }
+
+    var mobileNav = document.createElement("nav");
+    mobileNav.id = "site-nav-mobile";
+    mobileNav.className = "site-nav site-nav-mobile";
+    mobileNav.setAttribute("aria-label", "Navegação principal");
+
+    SITE_NAV_ITEMS.forEach(function (item) {
+      mobileNav.appendChild(createNavLink(item, "mobile"));
+    });
+
+    document.body.appendChild(mobileNav);
   }
 
   function onDomReady() {
     fixCouplePhotoCarousel();
     lazyLoadRsvpIframe();
-    addRsvpCtaButton();
+    addSiteNavigation();
   }
 
   holdLoaderUntilFonts();
