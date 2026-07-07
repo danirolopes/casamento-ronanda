@@ -276,15 +276,17 @@
     link.className = "site-nav-link";
     link.href = item.href;
 
-    var icon = document.createElement("span");
-    icon.className = "site-nav-icon";
-    icon.innerHTML = item.icon;
+    if (variant === "mobile") {
+      var icon = document.createElement("span");
+      icon.className = "site-nav-icon";
+      icon.innerHTML = item.icon;
+      link.appendChild(icon);
+    }
 
     var label = document.createElement("span");
     label.className = "site-nav-label";
     label.textContent = variant === "mobile" ? item.shortLabel : item.label;
 
-    link.appendChild(icon);
     link.appendChild(label);
     bindNavLink(link, item);
     return link;
