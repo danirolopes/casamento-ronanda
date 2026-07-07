@@ -473,6 +473,10 @@ body.sdn-menu-fixed {
   padding-right: 10px !important;
 }
 
+.btn-generate-message {
+  display: none !important;
+}
+
 .section-rsvp,
 .section-rsvp > .section-wrap {
   background-color: var(--bg-section-rsvp) !important;
