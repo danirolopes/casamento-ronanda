@@ -106,14 +106,7 @@ server {
         proxy_set_header Host ${CASAR_PAINEL_HOST};
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto https;
-        proxy_set_header Accept-Encoding gzip;
-
-        gunzip on;
-        gzip on;
-        gzip_vary on;
-        gzip_proxied any;
-        gzip_min_length 256;
-        gzip_types text/html text/css application/javascript application/json text/plain application/xml;
+        proxy_set_header Accept-Encoding "";
 
         proxy_cookie_domain .casar.com $host;
 
@@ -158,14 +151,7 @@ server {
         proxy_set_header Host ${CASAR_PAINEL_HOST};
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto https;
-        proxy_set_header Accept-Encoding gzip;
-
-        gunzip on;
-        gzip on;
-        gzip_vary on;
-        gzip_proxied any;
-        gzip_min_length 256;
-        gzip_types text/css application/javascript;
+        proxy_set_header Accept-Encoding "";
 
         add_header Cache-Control "public, max-age=604800, immutable";
 
