@@ -309,7 +309,15 @@
 
     desktopNav.appendChild(desktopList);
 
+    var header = document.querySelector(".sdn-topo .header");
     var headerCol = document.querySelector(".sdn-topo .header > .col2");
+
+    if (!headerCol && header) {
+      headerCol = document.createElement("div");
+      headerCol.className = "col2";
+      header.appendChild(headerCol);
+    }
+
     if (headerCol) {
       headerCol.innerHTML = "";
       headerCol.appendChild(desktopNav);
