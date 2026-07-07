@@ -53,6 +53,10 @@
     );
   }
 
+  function isRsvpHash() {
+    return /^#\/?rsvp(?:$|[/?#])/.test(location.hash);
+  }
+
   function loadRsvpIframe(iframe) {
     if (!iframe || iframe.dataset.rsvpLoaded) return;
     iframe.dataset.rsvpLoaded = "true";
@@ -108,7 +112,7 @@
   function scheduleRsvpWarmup() {
     prefetchRsvpAssets();
 
-    if (location.hash === "#rsvp") {
+    if (isRsvpHash()) {
       warmRsvpIframe();
       return;
     }

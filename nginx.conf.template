@@ -153,15 +153,20 @@ server {
         proxy_set_header X-Forwarded-Proto https;
         proxy_set_header Accept-Encoding "";
 
-        add_header Cache-Control "public, max-age=604800, immutable";
+        add_header Cache-Control "public, max-age=3600, must-revalidate";
 
         proxy_redirect off;
 
         sub_filter_once off;
         sub_filter_types application/javascript text/css;
 
+        sub_filter 'mode:"history",base:"/",routes:' 'mode:"history",base:"/casar-painel/",routes:';
+        sub_filter '"https://internal-api.casar.com".replace("internal-","")' '"/casar-api"';
         sub_filter 'https://internal-api.casar.com' '/casar-internal-api';
         sub_filter 'https://noivos.casar.com' '/casar-noivos';
+        sub_filter 'http://www.casar.com/' 'https://www.casar.com/';
+        sub_filter 'http://painel.casar.com/' 'https://painel.casar.com/';
+        sub_filter 'this.apiUrl=o+"/v1/rsvp"' 'this.apiUrl=window.location.origin+o+"/v1/rsvp"';
         sub_filter 'url(/img/bg-header-step1.792189ae.jpg)' 'none';
         sub_filter 'url(/img/bg-header-step2.cb5242fe.jpg)' 'none';
         sub_filter 'url(/img/desativacao-shopping.0dfa0c59.png)' 'none';
