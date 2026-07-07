@@ -328,8 +328,27 @@ body.sdn-menu-fixed {
   background-color: var(--bg-section-rsvp) !important;
 }
 
-#rsvp-invites-iframe:not([src]) {
+#rsvp-invites-iframe:not([src]),
+#rsvp-invites-iframe[data-rsvp-pending="true"] {
   min-height: 320px;
+  background: linear-gradient(
+    90deg,
+    rgba(165, 18, 23, 0.08) 0%,
+    rgba(165, 18, 23, 0.14) 50%,
+    rgba(165, 18, 23, 0.08) 100%
+  );
+  background-size: 200% 100%;
+  animation: rsvp-iframe-loading 1.4s ease-in-out infinite;
+}
+
+@keyframes rsvp-iframe-loading {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
 }
 
 .section-rsvp h2.sdn-titulo-pagina {

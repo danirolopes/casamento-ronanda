@@ -3,13 +3,22 @@
  */
 
 html.rsvp-loading #app {
-  opacity: 0;
   min-height: 240px;
 }
 
-html.rsvp-ready #app {
-  opacity: 1;
-  transition: opacity 0.2s ease;
+html.rsvp-loading #app::before {
+  content: "Carregando confirmação...";
+  display: block;
+  padding: 2.5rem 1rem;
+  color: #5d758d;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+html.rsvp-ready #app::before {
+  content: none;
+  display: none;
 }
 
 .c-invite__header:before,

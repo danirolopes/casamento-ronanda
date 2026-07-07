@@ -6,6 +6,7 @@
 
   var TITLE = "Casamento Maria Fernanda e Ronaldo";
   var FONT_WAIT_MS = 5000;
+  var RSVP_WARMUP_MS = 2000;
 
   function waitForFonts() {
     var loads = [
@@ -55,9 +56,87 @@
   function loadRsvpIframe(iframe) {
     if (!iframe || iframe.dataset.rsvpLoaded) return;
     iframe.dataset.rsvpLoaded = "true";
+    iframe.removeAttribute("data-rsvp-pending");
     if (iframe.dataset.rsvpSrc) {
       iframe.src = iframe.dataset.rsvpSrc;
     }
+  }
+
+  function prefetchUrl(href, as) {
+    if (!href || document.querySelector('link[rel="prefetch"][href="' + href + '"]')) {
+      return;
+    }
+
+    var link = document.createElement("link");
+    link.rel = "prefetch";
+    if (as) {
+      link.as = as;
+    }
+    link.href = href;
+    document.head.appendChild(link);
+  }
+
+  function prefetchRsvpAssets() {
+    if (document.documentElement.dataset.rsvpPrefetch) return;
+    document.documentElement.dataset.rsvpPrefetch = "true";
+
+    var iframe = document.getElementById("rsvp-invites-iframe");
+    if (!iframe || !iframe.dataset.rsvpSrc) return;
+
+    prefetchUrl("/casar-painel/rsvp-boot.js", "script");
+    prefetchUrl("/casar-painel/rsvp.css", "style");
+    prefetchUrl("/casar-painel/fonts/DREAMLINE.OTF");
+
+    fetch(iframe.dataset.rsvpSrc, { credentials: "same-origin" })
+      .then(function (response) {
+        return response.text();
+      })
+      .then(function (html) {
+        html.replace(/(?:src|href)="(\/casar-painel\/(?:js|css)\/[^"]+)"/g, function (_, url) {
+          prefetchUrl(url, url.indexOf("/css/") !== -1 ? "style" : "script");
+          return "";
+        });
+      })
+      .catch(function () {});
+  }
+
+  function warmRsvpIframe() {
+    var iframe = document.getElementById("rsvp-invites-iframe");
+    loadRsvpIframe(iframe);
+  }
+
+  function scheduleRsvpWarmup() {
+    prefetchRsvpAssets();
+
+    if (location.hash === "#rsvp") {
+      warmRsvpIframe();
+      return;
+    }
+
+    var warmed = false;
+    function warmOnce() {
+      if (warmed) return;
+      warmed = true;
+      warmRsvpIframe();
+    }
+
+    setTimeout(warmOnce, RSVP_WARMUP_MS);
+
+    document.addEventListener(
+      "scroll",
+      function () {
+        warmOnce();
+      },
+      { once: true, passive: true }
+    );
+
+    document.addEventListener(
+      "touchstart",
+      function () {
+        warmOnce();
+      },
+      { once: true, passive: true }
+    );
   }
 
   function lazyLoadRsvpIframe() {
@@ -70,30 +149,15 @@
     if (!src) return;
 
     iframe.dataset.rsvpSrc = src;
+    iframe.dataset.rsvpPending = "true";
     iframe.removeAttribute("src");
     iframe.setAttribute("loading", "lazy");
 
-    if (location.hash === "#rsvp") {
-      loadRsvpIframe(iframe);
-      return;
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(scheduleRsvpWarmup, { timeout: RSVP_WARMUP_MS + 500 });
+    } else {
+      setTimeout(scheduleRsvpWarmup, RSVP_WARMUP_MS);
     }
-
-    var target = iframe.closest(".section-rsvp") || iframe;
-    if (!("IntersectionObserver" in window)) {
-      loadRsvpIframe(iframe);
-      return;
-    }
-
-    var observer = new IntersectionObserver(
-      function (entries) {
-        if (entries[0].isIntersecting) {
-          loadRsvpIframe(iframe);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "400px 0px" }
-    );
-    observer.observe(target);
   }
 
   function addRsvpCtaButton() {
@@ -104,9 +168,16 @@
     button.className = "rsvp-cta-fixed";
     button.href = "#rsvp";
     button.textContent = "Confirme sua presença!";
+
+    function primeRsvp() {
+      prefetchRsvpAssets();
+      warmRsvpIframe();
+    }
+
+    button.addEventListener("mouseenter", primeRsvp, { once: true });
+    button.addEventListener("touchstart", primeRsvp, { once: true, passive: true });
     button.addEventListener("click", function (event) {
-      var iframe = document.getElementById("rsvp-invites-iframe");
-      loadRsvpIframe(iframe);
+      primeRsvp();
 
       var target = document.getElementById("rsvp") || document.querySelector(".section-rsvp");
       if (!target) return;

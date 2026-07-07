@@ -106,8 +106,14 @@ server {
         proxy_set_header Host ${CASAR_PAINEL_HOST};
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header Accept-Encoding gzip;
 
-        proxy_set_header Accept-Encoding "";
+        gunzip on;
+        gzip on;
+        gzip_vary on;
+        gzip_proxied any;
+        gzip_min_length 256;
+        gzip_types text/html text/css application/javascript application/json text/plain application/xml;
 
         proxy_cookie_domain .casar.com $host;
 
@@ -141,7 +147,59 @@ server {
         sub_filter 'url(/img/banners-external-list.ed3359ca.png)' 'none';
         sub_filter 'url(/img/banners-external-list-wide.13bf9934.png)' 'none';
         sub_filter 'url(/img/copied.8b6101a0.svg)' 'none';
-        sub_filter '</head>' '<base href="/casar-painel/"><link rel="preload" href="fonts/DREAMLINE.OTF" as="font" type="font/otf" crossorigin><script src="rsvp-boot.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="fonts/dreamline.css"><link rel="stylesheet" href="rsvp.css"><script defer src="rsvp.js"></script></head>';
+        sub_filter '</head>' '<base href="/casar-painel/"><link rel="preload" href="fonts/DREAMLINE.OTF" as="font" type="font/otf" crossorigin><script src="rsvp-boot.js"></script><link rel="stylesheet" href="fonts/dreamline.css"><link rel="stylesheet" href="rsvp.css"><script defer src="rsvp.js"></script></head>';
+    }
+
+    location ~ ^/casar-painel/((?:js|css)/.+)$ {
+        proxy_pass https://${CASAR_PAINEL_HOST}/$1;
+
+        proxy_ssl_server_name on;
+
+        proxy_set_header Host ${CASAR_PAINEL_HOST};
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header Accept-Encoding gzip;
+
+        gunzip on;
+        gzip on;
+        gzip_vary on;
+        gzip_proxied any;
+        gzip_min_length 256;
+        gzip_types text/css application/javascript;
+
+        add_header Cache-Control "public, max-age=604800, immutable";
+
+        proxy_redirect off;
+
+        sub_filter_once off;
+        sub_filter_types application/javascript text/css;
+
+        sub_filter 'https://internal-api.casar.com' '/casar-internal-api';
+        sub_filter 'https://noivos.casar.com' '/casar-noivos';
+        sub_filter 'url(/img/bg-header-step1.792189ae.jpg)' 'none';
+        sub_filter 'url(/img/bg-header-step2.cb5242fe.jpg)' 'none';
+        sub_filter 'url(/img/desativacao-shopping.0dfa0c59.png)' 'none';
+        sub_filter 'url(/img/desativacao-shopping-mobile.d25c25cd.png)' 'none';
+        sub_filter 'url(/img/homecasar.efbd3f2e.jpg)' 'none';
+        sub_filter 'url(/img/fundo-shopping.7eeb0910.png)' 'none';
+        sub_filter 'url(/img/banners-external-list.ed3359ca.png)' 'none';
+        sub_filter 'url(/img/banners-external-list-wide.13bf9934.png)' 'none';
+        sub_filter 'url(/img/copied.8b6101a0.svg)' 'none';
+    }
+
+    location /casar-painel/img/ {
+        proxy_pass https://${CASAR_PAINEL_HOST}/img/;
+
+        proxy_ssl_server_name on;
+
+        proxy_set_header Host ${CASAR_PAINEL_HOST};
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header Accept-Encoding gzip;
+
+        add_header Cache-Control "public, max-age=604800, immutable";
+
+        proxy_redirect off;
     }
 
     location / {
