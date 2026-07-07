@@ -1,6 +1,32 @@
 /*
- * Typography overrides for the RSVP iframe (painel.casar.com Vue app).
+ * Typography and performance overrides for the RSVP iframe (painel.casar.com Vue app).
  */
+
+html.rsvp-loading #app {
+  opacity: 0;
+  min-height: 240px;
+}
+
+html.rsvp-ready #app {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.c-invite__header:before,
+.c-invite--step2 .c-invite__header:before,
+.c-banner-shopping,
+.c-modal-create-site__img-background:before,
+.shopping-card-banner,
+.convincing-partner-stores,
+.filtered-img[data-v-e5a94eb0] {
+  background-image: none !important;
+  content: none !important;
+}
+
+.c-invite__header {
+  height: auto !important;
+  min-height: 0 !important;
+}
 
 :root {
   --font-title: "Dreamline", cursive;

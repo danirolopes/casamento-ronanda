@@ -12,6 +12,12 @@ server {
         add_header Cache-Control "public, max-age=300";
     }
 
+    location = /fonts/DREAMLINE.OTF {
+        alias /usr/share/nginx/html/fonts/DREAMLINE.OTF;
+        add_header Cache-Control "public, max-age=86400";
+        add_header Access-Control-Allow-Origin "*";
+    }
+
     location = /og-image.png {
         alias /usr/share/nginx/html/og-image.png;
         add_header Cache-Control "public, max-age=86400";
@@ -20,11 +26,13 @@ server {
     location /fonts/ {
         alias /usr/share/nginx/html/fonts/;
         add_header Cache-Control "public, max-age=86400";
+        add_header Access-Control-Allow-Origin "*";
     }
 
     location /casar-painel/fonts/ {
         alias /usr/share/nginx/html/fonts/;
         add_header Cache-Control "public, max-age=86400";
+        add_header Access-Control-Allow-Origin "*";
     }
 
     location = /casar-painel/rsvp.css {
@@ -34,6 +42,11 @@ server {
 
     location = /casar-painel/rsvp.js {
         alias /usr/share/nginx/html/rsvp.js;
+        add_header Cache-Control "public, max-age=300";
+    }
+
+    location = /casar-painel/rsvp-boot.js {
+        alias /usr/share/nginx/html/rsvp-boot.js;
         add_header Cache-Control "public, max-age=300";
     }
 
@@ -101,7 +114,7 @@ server {
         proxy_redirect off;
 
         sub_filter_once off;
-        sub_filter_types text/html application/javascript;
+        sub_filter_types text/html application/javascript text/css;
 
         sub_filter 'src="/js/' 'src="/casar-painel/js/';
         sub_filter 'href="/css/' 'href="/casar-painel/css/';
@@ -112,7 +125,23 @@ server {
         sub_filter 'https://internal-api.casar.com' '/casar-internal-api';
         sub_filter 'https://noivos.casar.com' '/casar-noivos';
         sub_filter 'this.apiUrl=o+"/v1/rsvp"' 'this.apiUrl=window.location.origin+o+"/v1/rsvp"';
-        sub_filter '</head>' '<base href="/casar-painel/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="fonts/dreamline.css"><link rel="stylesheet" href="rsvp.css"><script defer src="rsvp.js"></script></head>';
+        sub_filter '<script>!function(e,n,t,o){_errs=[o]' '<script type="text/plain" data-disabled="errorception">!function(e,n,t,o){_errs=[o]';
+        sub_filter '<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">' '';
+        sub_filter '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0"/>' '';
+        sub_filter '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@8.3.1/dist/css/shepherd.css"/>' '';
+        sub_filter '<script src="https://kit.fontawesome.com/bb81d71045.js" async defer="defer" crossorigin="anonymous"></script>' '';
+        sub_filter '<script src="https://cdn.jsdelivr.net/npm/shepherd.js@8.3.1/dist/js/shepherd.min.js" async defer="defer"></script>' '';
+        sub_filter '<script src="https://cdn.wootric.com/wootric-sdk.js" async defer="defer"></script>' '';
+        sub_filter 'url(/img/bg-header-step1.792189ae.jpg)' 'none';
+        sub_filter 'url(/img/bg-header-step2.cb5242fe.jpg)' 'none';
+        sub_filter 'url(/img/desativacao-shopping.0dfa0c59.png)' 'none';
+        sub_filter 'url(/img/desativacao-shopping-mobile.d25c25cd.png)' 'none';
+        sub_filter 'url(/img/homecasar.efbd3f2e.jpg)' 'none';
+        sub_filter 'url(/img/fundo-shopping.7eeb0910.png)' 'none';
+        sub_filter 'url(/img/banners-external-list.ed3359ca.png)' 'none';
+        sub_filter 'url(/img/banners-external-list-wide.13bf9934.png)' 'none';
+        sub_filter 'url(/img/copied.8b6101a0.svg)' 'none';
+        sub_filter '</head>' '<base href="/casar-painel/"><link rel="preload" href="fonts/DREAMLINE.OTF" as="font" type="font/otf" crossorigin><script src="rsvp-boot.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="fonts/dreamline.css"><link rel="stylesheet" href="rsvp.css"><script defer src="rsvp.js"></script></head>';
     }
 
     location / {
@@ -143,6 +172,6 @@ server {
         sub_filter '<meta property="og:image:width" content="158"/>' '<meta property="og:image:width" content="1200"/>';
         sub_filter '<meta property="og:image:height" content="158"/>' '<meta property="og:image:height" content="630"/>';
         sub_filter '<meta property="og:url" content="https://noivos.casar.com/mariafernandaeronaldo">' '<meta property="og:url" content="${SITE_URL}/">';
-        sub_filter '</head>' '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="/fonts/dreamline.css"><link rel="stylesheet" href="/custom.css"><script defer src="/inject.js"></script></head>';
+        sub_filter '</head>' '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" href="/fonts/DREAMLINE.OTF" as="font" type="font/otf" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="/fonts/dreamline.css"><link rel="stylesheet" href="/custom.css"><script src="/inject.js"></script></head>';
     }
 }

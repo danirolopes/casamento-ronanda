@@ -28,6 +28,10 @@ body.site-noivos,
   background-color: var(--bg-page) !important;
 }
 
+html:not(.fonts-ready) .sdn-wrapper {
+  visibility: hidden;
+}
+
 /* Typography — body (replaces Affogato / Lato) */
 body.site-noivos,
 .sdn-wrapper,
@@ -288,6 +292,10 @@ body.sdn-menu-fixed {
 .section-rsvp,
 .section-rsvp > .section-wrap {
   background-color: var(--bg-section-rsvp) !important;
+}
+
+#rsvp-invites-iframe:not([src]) {
+  min-height: 320px;
 }
 
 .section-rsvp h2.sdn-titulo-pagina {

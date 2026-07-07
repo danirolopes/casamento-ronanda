@@ -7,6 +7,7 @@ COPY docker-entrypoint.sh /docker-entrypoint.sh
 COPY custom.css /usr/share/nginx/html/custom.css
 COPY rsvp.css /usr/share/nginx/html/rsvp.css
 COPY rsvp.js /usr/share/nginx/html/rsvp.js
+COPY rsvp-boot.js /usr/share/nginx/html/rsvp-boot.js
 COPY inject.js /usr/share/nginx/html/inject.js
 COPY og-image.png /usr/share/nginx/html/og-image.png
 COPY fonts/ /usr/share/nginx/html/fonts/
