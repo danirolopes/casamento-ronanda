@@ -120,10 +120,9 @@ server {
         sub_filter 'href="/favicons/' 'href="/casar-painel/favicons/';
         sub_filter 'href="/site.webmanifest"' 'href="/casar-painel/site.webmanifest"';
         sub_filter 'mode:"history",base:"/",routes:' 'mode:"history",base:"/casar-painel/",routes:';
-        sub_filter '"https://internal-api.casar.com".replace("internal-","")' '"/casar-api"';
-        sub_filter 'https://internal-api.casar.com' '/casar-internal-api';
+        sub_filter '"https://internal-api.casar.com".replace("internal-","")' '"${SITE_URL}/casar-api"';
+        sub_filter 'https://internal-api.casar.com' '${SITE_URL}/casar-internal-api';
         sub_filter 'https://noivos.casar.com' '/casar-noivos';
-        sub_filter 'this.apiUrl=o+"/v1/rsvp"' 'this.apiUrl=window.location.origin+o+"/v1/rsvp"';
         sub_filter '<script>!function(e,n,t,o){_errs=[o]' '<script type="text/plain" data-disabled="errorception">!function(e,n,t,o){_errs=[o]';
         sub_filter '<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">' '';
         sub_filter '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0"/>' '';
@@ -161,12 +160,11 @@ server {
         sub_filter_types application/javascript text/css;
 
         sub_filter 'mode:"history",base:"/",routes:' 'mode:"history",base:"/casar-painel/",routes:';
-        sub_filter '"https://internal-api.casar.com".replace("internal-","")' '"/casar-api"';
-        sub_filter 'https://internal-api.casar.com' '/casar-internal-api';
+        sub_filter '"https://internal-api.casar.com".replace("internal-","")' '"${SITE_URL}/casar-api"';
+        sub_filter 'https://internal-api.casar.com' '${SITE_URL}/casar-internal-api';
         sub_filter 'https://noivos.casar.com' '/casar-noivos';
         sub_filter 'http://www.casar.com/' 'https://www.casar.com/';
         sub_filter 'http://painel.casar.com/' 'https://painel.casar.com/';
-        sub_filter 'this.apiUrl=o+"/v1/rsvp"' 'this.apiUrl=window.location.origin+o+"/v1/rsvp"';
         sub_filter 'url(/img/bg-header-step1.792189ae.jpg)' 'none';
         sub_filter 'url(/img/bg-header-step2.cb5242fe.jpg)' 'none';
         sub_filter 'url(/img/desativacao-shopping.0dfa0c59.png)' 'none';
