@@ -139,7 +139,9 @@ server {
         sub_filter 'url(/img/banners-external-list.ed3359ca.png)' 'none';
         sub_filter 'url(/img/banners-external-list-wide.13bf9934.png)' 'none';
         sub_filter 'url(/img/copied.8b6101a0.svg)' 'none';
-        sub_filter '</head>' '<base href="/casar-painel/"><link rel="preload" href="fonts/DREAMLINE.OTF" as="font" type="font/otf" crossorigin><script src="rsvp-boot.js"></script><link rel="stylesheet" href="fonts/dreamline.css"><link rel="stylesheet" href="rsvp.css"><script defer src="rsvp.js"></script></head>';
+        sub_filter '</head>' '<base href="/casar-painel/"><link rel="preload" href="fonts/DREAMLINE.OTF" as="font" type="font/otf" crossorigin><script src="rsvp-boot.js?v=2"></script><link rel="stylesheet" href="fonts/dreamline.css"><link rel="stylesheet" href="rsvp.css?v=2"><script defer src="rsvp.js?v=2"></script></head>';
+        sub_filter '.js"' '.js?v=2"';
+        sub_filter '.css"' '.css?v=2"';
     }
 
     location ~ ^/casar-painel/((?:js|css)/.+)$ {
@@ -225,6 +227,6 @@ server {
         sub_filter '<meta property="og:url" content="https://noivos.casar.com/mariafernandaeronaldo">' '<meta property="og:url" content="${SITE_URL}/">';
         sub_filter '&quot;cartao_postal_ativo&quot;:&quot;1&quot;' '&quot;cartao_postal_ativo&quot;:&quot;0&quot;';
         sub_filter '&quot;site_url&quot;:&quot;${SITE_SLUG}&quot;' '&quot;site_url&quot;:&quot;&quot;';
-        sub_filter '</head>' '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" href="/fonts/DREAMLINE.OTF" as="font" type="font/otf" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="/fonts/dreamline.css"><link rel="stylesheet" href="/custom.css?v=1"><script src="/inject.js?v=1"></script></head>';
+        sub_filter '</head>' '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" href="/fonts/DREAMLINE.OTF" as="font" type="font/otf" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet"><link rel="stylesheet" href="/fonts/dreamline.css"><link rel="stylesheet" href="/custom.css?v=2"><script src="/inject.js?v=2"></script></head>';
     }
 }

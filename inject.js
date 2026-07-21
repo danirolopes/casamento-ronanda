@@ -87,8 +87,8 @@
     var iframe = document.getElementById("rsvp-invites-iframe");
     if (!iframe || !iframe.dataset.rsvpSrc) return;
 
-    prefetchUrl("/casar-painel/rsvp-boot.js", "script");
-    prefetchUrl("/casar-painel/rsvp.css", "style");
+    prefetchUrl("/casar-painel/rsvp-boot.js?v=2", "script");
+    prefetchUrl("/casar-painel/rsvp.css?v=2", "style");
     prefetchUrl("/casar-painel/fonts/DREAMLINE.OTF");
 
     fetch(iframe.dataset.rsvpSrc, { credentials: "same-origin" })
